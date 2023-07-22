@@ -122,22 +122,14 @@ ui.start('#firebaseui-auth-container', {
       // clientId: '385268383291-4cvdjhk3jpk7hucv3l6i1v1jjcat41o4.apps.googleusercontent.com'
     }
   ],
+  signInFlow: 'popup',
+
   callbacks: {
     // Called when the user has been successfully signed in.
     signInSuccessWithAuthResult: function ({ user }) {
       if (user) {
-        user.getIdToken().then((oidcToken) => {
-          var request = new Request('/api/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              oidcToken
-            })
-          })
-          fetch(request).then(() => document.location.reload())
-        })
+        console.log(user);
+        alert(JSON.stringify(user));
         return false;
       }
     },
